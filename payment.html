@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Payment Reminder</title>
+
+<style>
+:root{
+  /* JUAN LINK theme */
+  --bg: #1f5e1c;           /* main green */
+  --bg2:#184a15;           /* darker green */
+  --card:#184a15;          /* cards */
+  --card2:#1f5e1c;         /* inner cards */
+  --accent:#f4d21f;        /* yellow accent */
+  --accent2:#22c55e;       /* optional bright green for small highlights */
+  --text:#ffffff;          /* white */
+  --muted:#cbd5e1;         /* soft gray */
+  --border:#2e7d32;        /* green border */
+  --shadow:#0e2e0d;        /* shadow */
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: linear-gradient(135deg, var(--bg), #2fa42c);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  padding:18px;
+}
+
+.container{
+  width:95%;
+  max-width:1000px;
+  background: rgba(24,74,21,.92);
+  border:1px solid rgba(46,125,50,.75);
+  border-radius:16px;
+  padding:22px;
+  box-shadow:0 18px 45px rgba(14,46,13,.55);
+  backdrop-filter: blur(6px);
+}
+
+.header{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:18px;
+  padding-bottom:14px;
+  border-bottom:2px solid var(--accent);
+}
+
+.logo{
+  width:70px;
+  height:70px;
+  background:#fff;
+  border-radius:12px;
+  padding:6px;
+  object-fit:contain;
+  box-shadow: 0 10px 20px rgba(0,0,0,.25);
+}
+
+.title{
+  font-size:18px;
+  font-weight:800;
+  line-height:1.2;
+}
+.subtitle{
+  margin-top:4px;
+  font-size:13px;
+  color: var(--muted);
+  font-weight:600;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:18px;
+}
+
+@media(max-width:700px){
+  .grid{ grid-template-columns:1fr; }
+}
+
+.box{
+  background: rgba(24,74,21,.95);
+  border:1px solid rgba(46,125,50,.85);
+  padding:18px;
+  border-radius:14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.22);
+}
+
+.section-label{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+.section-label .left{
+  font-size:13px;
+  color: var(--muted);
+  font-weight:700;
+  letter-spacing:.4px;
+}
+.badge{
+  font-size:12px;
+  font-weight:800;
+  color:#163b14;
+  background: var(--accent);
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+/* 2-column plan layout */
+.plan-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:10px;
+}
+
+@media(max-width:500px){
+  .plan-list{ grid-template-columns:1fr; }
+}
+
+.plan{
+  background: rgba(31,94,28,.9);
+  border:1px solid rgba(46,125,50,.9);
+  padding:14px 12px;
+  border-radius:12px;
+  text-align:center;
+  transition: transform .12s ease;
+}
+
+.plan:hover{
+  transform: translateY(-2px);
+}
+
+.plan strong{
+  display:block;
+  color: var(--accent);
+  font-size:18px;
+  letter-spacing:.3px;
+}
+.plan span{
+  display:block;
+  margin-top:6px;
+  font-size:13px;
+  color: var(--muted);
+  font-weight:700;
+}
+
+/* GCash number box */
+.gcash-number{
+  font-size:28px;
+  font-weight:900;
+  color: var(--accent);
+  text-align:center;
+  margin:14px 0 10px;
+  letter-spacing:2px;
+  padding:12px 10px;
+  border-radius:12px;
+  border:1px dashed rgba(244,210,31,.75);
+  background: rgba(15,40,15,.35);
+}
+
+.note{
+  font-size:14px;
+  color: var(--muted);
+  margin-top:10px;
+  line-height:1.6;
+  text-align:center;
+}
+
+.mini-note{
+  margin-top:14px;
+  font-size:12px;
+  color: rgba(203,213,225,.9);
+  line-height:1.6;
+  background: rgba(15,40,15,.25);
+  border:1px solid rgba(46,125,50,.65);
+  border-radius:12px;
+  padding:12px;
+}
+
+.footer{
+  margin-top:18px;
+  font-size:12px;
+  color: rgba(203,213,225,.85);
+  text-align:center;
+}
+
+hr.sep{
+  border:none;
+  border-top:1px solid rgba(46,125,50,.6);
+  margin:14px 0;
+}
+
+</style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="header">
+      <img src="logo.png" class="logo" alt="Company Logo" />
+      <div>
+        <div class="title">NewIsland Media Vision, Inc.</div>
+        <div class="subtitle">GCash Payment Reminder</div>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <!-- LEFT SIDE: PLANS -->
+      <div class="box">
+        <div class="section-label">
+          <div class="left">Available Internet Plans</div>
+          <div class="badge">JUAN LINK</div>
+        </div>
+
+        <div class="plan-list">
+          <div class="plan">
+            <strong>JUAN LINK 50</strong>
+            <span>FOR 1 DAY</span>
+          </div>
+
+          <div class="plan">
+            <strong>JUAN LINK 199</strong>
+            <span>FOR 7 DAYS</span>
+          </div>
+
+          <div class="plan">
+            <strong>JUAN LINK 399</strong>
+            <span>FOR 15 DAYS</span>
+          </div>
+
+          <div class="plan">
+            <strong>JUAN LINK 699</strong>
+            <span>FOR 30 DAYS</span>
+          </div>
+        </div>
+
+        <div class="mini-note">
+          <strong style="color:var(--accent);">Reminder:</strong>
+          Please include your <strong style="color:var(--text);">ACCOUNT NUMBER</strong>
+          in the GCash message/notes to avoid delays in activation.
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE: GCASH NUMBER -->
+      <div class="box" style="text-align:center;">
+        <div class="section-label" style="margin-bottom:6px;">
+          <div class="left">Send Payment To</div>
+          <div class="badge">GCash</div>
+        </div>
+
+        <div class="gcash-number">09162883171 <br> EU****O L** M.</div>
+
+        <div class="note">
+          Open GCash → Send Money<br />
+          Enter the number above<br />
+          Type your <strong style="color:var(--text);">ACCOUNT NUMBER</strong> in the message field
+        </div>
+
+        <hr class="sep" />
+
+        <div class="note" style="font-size:13px;">
+          Keep your reference/receipt until your internet is updated.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      If you have already paid, please ignore this reminder.
+    </div>
+
+  </div>
+</body>
+</html>
